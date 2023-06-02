@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoPayToPlay</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="./script.js" defer></script>
+    <!-- <script src="demo_defer.js" defer></script> -->
+</head>
+<body>
+    <h1>NoPayToPlay</h1>
+    <div class="game-container">
+        <h2>Random Game</h2>
+        <div id="randomGame"></div>
+        <button id="randomButton">Get Random Game</button>
+      </div>
+    <div id="games"></div>
+  
+    <form id="addGameForm">
+      <h2>Add a Game</h2>
+
+      <div class="addGame">
+
+      <label for="title">Title:</label>
+
+      <input type="text" id="title" name="title" required>
+
+      <label for="shortDescription">Short Description:</label>
+
+      <textarea id="shortDescription" name="shortDescription" required></textarea>
+
+      <label for="genre">Genre:</label>
+
+      <input type="text" id="genre" name="genre" required>
+
+      <label for="platform">Platform:</label>
+
+      <input type="text" id="platform" name="platform" required>
+
+      <label for="publisher">Publisher:</label>
+
+      <input type="text" id="publisher" name="publisher" required>
+
+      <label for="developer">Developer:</label>
+
+      <input type="text" id="developer" name="developer" required>
+
+      <button type="submit">Add Game</button>
+
+      </div>
+
+      <div id="gameContainer"></div>
+</body>
+</html>
