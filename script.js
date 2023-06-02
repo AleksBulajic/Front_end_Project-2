@@ -2,9 +2,17 @@ const API_URL = 'https://procejt2.herokuapp.com';
 
 const randomButton = document.querySelector('#randomButton');
 const addGameButton = document.querySelector('#addGameButton');
+const title = document.getElementById('title').value;
+const thumbnail = document.getElementById('thumbnail').value;
+const short_description = document.getElementById('short_description').value;
+const genre = document.getElementById('genre').value;
+const platform = document.getElementById('platform').value;
+const publisher = document.getElementById('publisher').value;
+const developer = document.getElementById('developer').value;
+const freetogame_profile_url = document.getElementById('freetogame_profile_url').value;
 
 randomButton.addEventListener('click', handleRandomButtonClick);
-addGameButton.addEventListener('click',handleAddButtornClick );
+addGameButton.addEventListener('click',handleAddButtonClick );
 
 function handleRandomButtonClick() {
     fetch(`${API_URL}/games/all`)
@@ -37,16 +45,18 @@ function handleRandomButtonClick() {
 }
 
 
-function handleAddButtornClick() {
+function handleAddButtonClick(event) {
+    event.preventDefault();
+console.log(event.target)
      const game = {
-        title: document.getElementById('title').value,
+       title: document.getElementById('title').value,
         thumbnail: document.getElementById('thumbnail').value,
         short_description: document.getElementById('short_description').value,
         genre: document.getElementById('genre').value,
         platform: document.getElementById('platform').value,
         publisher: document.getElementById('publisher').value,
         developer: document.getElementById('developer').value,
-        freetogame_profile_ur: document.getElementById('freetogame_profile_ur').value
+        freetogame_profile_url: document.getElementById('freetogame_profile_url').value
      };
 
      fetch(`${API_URL}/games/all`,  {
@@ -64,3 +74,4 @@ function handleAddButtornClick() {
         console.log('Error adding game:', error);
      });
 }
+
