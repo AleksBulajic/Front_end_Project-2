@@ -7,6 +7,10 @@ Get a random game: Clicking the "Get Random Game" button displays a random game 
 
 Add a game: Fill out the "Add a Game" form with the necessary details (title, thumbnail, description, genre, platform, publisher, developer, and freetogame_profile_url) and click the "Add Game" button to add a new game to the collection.
 
+Delete the random game: Clicking the "Delete" button will delete the random game from the collection
+
+Update the random game: Clicking the "Update" button will updtate specific information of the random game
+
 
 Technologies Used
 HTML
@@ -18,3 +22,8 @@ Contact
 Netifly link : https://illustrious-taffy-70368f.netlify.app/
 
 Developer: Aleksandar Bulajic
+
+
+## MVP
+
+1. be able to do full CRUD on the fron end and be able to interact with the database
