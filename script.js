@@ -1,4 +1,4 @@
-const API_URL = 'https://procejt2.herokuapp.com/'; 
+const API_URL = 'https://procejt2.herokuapp.com'; 
 
 //add game
 const randomButton = document.querySelector('#randomButton');
@@ -27,14 +27,14 @@ const developerUpdate = document.getElementById('developerUpdate')
 const freetogame_profile_urlUpdate = document.getElementById('freetogame_profile_urlUpdate')
 
 
-
+//listening buttons
 randomButton.addEventListener('click', handleRandomButtonClick);
 addGameButton.addEventListener('click',handleAddButtonClick );
 deleteButton.addEventListener('click', handleDeleteButtonClick);
 updateButton.addEventListener('click', handleUpdateButtonClick);
 
 
-
+//function that will give me a random game 
 function handleRandomButtonClick() {
     console.log('random clicked')
     fetch(`${API_URL}/games/all`)
