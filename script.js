@@ -11,7 +11,7 @@ const platform = document.getElementById('platform').value;
 const publisher = document.getElementById('publisher').value;
 const developer = document.getElementById('developer').value;
 const freetogame_profile_url = document.getElementById('freetogame_profile_url').value;
-
+let randomGame;
 
 randomButton.addEventListener('click', handleRandomButtonClick);
 addGameButton.addEventListener('click',handleAddButtonClick );
@@ -82,22 +82,32 @@ console.log(event.target)
 
 
 function handleDeleteButtonClick() {
-    fetch(`${API_URL}/games/delete/:id`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(game)
-    })
-    .then((response) => response.json())
-    .then((data) => {
-        console.log('Game deleted:', data);
-        // Perform any necessary actions after deleting the game
-    })
-    .catch((error) => {
-        console.log('Error deleting game:', error);
-    });
+    console.log('Delete button clicked');
+
+    if (randomGame) {
+        fetch(`${API_URL}/games/delete/${randomGame.id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            
+            body: JSON.stringify(randomGame)
+            
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log('Game deleted:', data);
+            // Reset the stored random game variable
+            randomGame = null;
+        })
+        .catch((error) => {
+            console.log('Error deleting game:', error);
+        });
+    } else {
+        console.log('No game selected to delete.');
+    }
 }
+
 
 //  delte function 
 // update game
