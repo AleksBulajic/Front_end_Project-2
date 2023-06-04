@@ -2,6 +2,7 @@ const API_URL = 'https://procejt2.herokuapp.com';
 
 const randomButton = document.querySelector('#randomButton');
 const addGameButton = document.querySelector('#addGameButton');
+const deleteButton = document.querySelector('#deleteButton');
 const title = document.getElementById('title').value;
 const thumbnail = document.getElementById('thumbnail').value;
 const short_description = document.getElementById('short_description').value;
@@ -11,8 +12,12 @@ const publisher = document.getElementById('publisher').value;
 const developer = document.getElementById('developer').value;
 const freetogame_profile_url = document.getElementById('freetogame_profile_url').value;
 
+
 randomButton.addEventListener('click', handleRandomButtonClick);
 addGameButton.addEventListener('click',handleAddButtonClick );
+deleteButton.addEventListener('click', handleDeleteButtonClick);
+
+
 
 function handleRandomButtonClick() {
     fetch(`${API_URL}/games/all`)
@@ -75,3 +80,24 @@ console.log(event.target)
      });
 }
 
+
+function handleDeleteButtonClick() {
+    fetch(`${API_URL}/games/delete/:id`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(game)
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        console.log('Game deleted:', data);
+        // Perform any necessary actions after deleting the game
+    })
+    .catch((error) => {
+        console.log('Error deleting game:', error);
+    });
+}
+
+//  delte function 
+// update game
