@@ -1,8 +1,10 @@
-const API_URL = 'https://procejt2.herokuapp.com'; 
+const API_URL = 'https://procejt2.herokuapp.com/'; 
 
+//add game
 const randomButton = document.querySelector('#randomButton');
 const addGameButton = document.querySelector('#addGameButton');
 const deleteButton = document.querySelector('#deleteButton');
+const updateButton = document.querySelector('#updateButton');
 const title = document.getElementById('title').value;
 const thumbnail = document.getElementById('thumbnail').value;
 const short_description = document.getElementById('short_description').value;
@@ -12,14 +14,29 @@ const publisher = document.getElementById('publisher').value;
 const developer = document.getElementById('developer').value;
 const freetogame_profile_url = document.getElementById('freetogame_profile_url').value;
 let randomGame;
+ 
+//update form
+const titleUpdated = document.getElementById('titleUpdated')
+const thumbnailUpdated = document.getElementById('thumbnailUpdated')
+const short_descriptionUpdated = document.getElementById('descriptionInputUpdated')
+const genreUpdated = document.getElementById('genreUpdated')
+const platformUpdated = document.getElementById('profileURLInputUpdate')
+const platformUpdate= document.getElementById('platformUpdate')
+const publisherUpdate = document.getElementById('publisherUpdate')
+const developerUpdate = document.getElementById('developerUpdate')
+const freetogame_profile_urlUpdate = document.getElementById('freetogame_profile_urlUpdate')
+
+
 
 randomButton.addEventListener('click', handleRandomButtonClick);
 addGameButton.addEventListener('click',handleAddButtonClick );
 deleteButton.addEventListener('click', handleDeleteButtonClick);
+updateButton.addEventListener('click', handleUpdateButtonClick);
 
 
 
 function handleRandomButtonClick() {
+    console.log('random clicked')
     fetch(`${API_URL}/games/all`)
     .then((response) => response.json())
     .then((data) => {
@@ -30,7 +47,7 @@ function handleRandomButtonClick() {
 
 // console.log(randomIndex);
         //get the random game object
-        const randomGame = data[randomIndex];
+         randomGame = data[randomIndex];
         console.log(randomGame);
 
         //display
@@ -83,9 +100,10 @@ console.log(event.target)
 
 function handleDeleteButtonClick() {
     console.log('Delete button clicked');
-
+    console.log(randomGame.id, 'here')
+    console.log(randomGame, 'here')
     if (randomGame) {
-        fetch(`${API_URL}/games/delete/${randomGame.id}`, {
+        fetch(`${API_URL}/games/delete/${randomGame._id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
@@ -109,5 +127,47 @@ function handleDeleteButtonClick() {
 }
 
 
-//  delte function 
+//get one by id 
 // update game
+
+function handleUpdateButtonClick(event)  {
+    event.preventDefault();
+    console.log('Update button clicked');
+    console.log(randomGame.id, 'here')
+    console.log(randomGame, 'here')
+  
+    const updateGame = {
+        title: document.getElementById('titleUpdate').value,
+         thumbnail: document.getElementById('thumbnailUpdate').value,
+         short_description: document.getElementById('short_description').value,
+         genre: document.getElementById('genreUpdate').value,
+         platform: document.getElementById('platformUpdate').value,
+         publisher: document.getElementById('publisherUpdate').value,
+         developer: document.getElementById('developerUpdate').value,
+        //  freetogame_profile_url: document.getElementById('freetogame_profile_urlUpdate').value
+      };
+    if (randomGame) {
+        fetch(`${API_URL}/games/${randomGame._id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            
+            body: JSON.stringify(updateGame)
+            
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log('Game updated', data);
+            // Reset the stored random game variable
+            randomGame = null;
+        })
+        .catch((error) => {
+            console.log('Error updating game:', error);
+        });
+    } else {
+        console.log('No game selected to update.');
+    }
+
+
+}
