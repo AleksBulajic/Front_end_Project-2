@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3030";
+const API_URL = "https://procejt2.herokuapp.com/";
 
 //add game
 const randomButton = document.querySelector("#randomButton");
