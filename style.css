@@ -12,12 +12,32 @@ body {
   padding: 0;
 }
 
-h1 {
+h1, #Search {
   text-align: center;
   background-color: #2f2f2f;
   color: #fff;
   padding: 20px;
+  display: flex;
+  width: 100%;
+
 }
+#Search {
+  width: 150px; /* Adjust the width to your desired value */
+}
+.topnav {
+  display: flex;
+  align-items: center;
+  background-color: #2f2f2f
+}
+
+h1 {
+  margin-right: auto;
+}
+
+input {
+  margin-left: auto;
+}
+
 
 .game-container,
 .addGame {

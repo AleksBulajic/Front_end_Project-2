@@ -1,10 +1,14 @@
 const API_URL = "https://procejt2.herokuapp.com";
 
-//add game
+
 const randomButton = document.querySelector("#randomButton");
+//add game
 const addGameButton = document.querySelector("#addGameButton");
+//delete game
 const deleteButton = document.querySelector("#deleteButton");
+// update game
 const updateButton = document.querySelector("#updateButton");
+//form to add game
 const title = document.getElementById("title").value;
 const thumbnail = document.getElementById("thumbnail").value;
 const short_description = document.getElementById("short_description").value;
@@ -12,25 +16,19 @@ const genre = document.getElementById("genre").value;
 const platform = document.getElementById("platform").value;
 const publisher = document.getElementById("publisher").value;
 const developer = document.getElementById("developer").value;
-const freetogame_profile_url = document.getElementById(
-  "freetogame_profile_url"
-).value;
+const freetogame_profile_url = document.getElementById("freetogame_profile_url").value;
 let randomGame;
 
 //update form
 const titleUpdated = document.getElementById("titleUpdated");
 const thumbnailUpdated = document.getElementById("thumbnailUpdated");
-const short_descriptionUpdated = document.getElementById(
-  "descriptionInputUpdated"
-);
+const short_descriptionUpdated = document.getElementById("descriptionInputUpdated");
 const genreUpdated = document.getElementById("genreUpdated");
 const platformUpdated = document.getElementById("profileURLInputUpdate");
 const platformUpdate = document.getElementById("platformUpdate");
 const publisherUpdate = document.getElementById("publisherUpdate");
 const developerUpdate = document.getElementById("developerUpdate");
-const freetogame_profile_urlUpdate = document.getElementById(
-  "freetogame_profile_urlUpdate"
-);
+const freetogame_profile_urlUpdate = document.getElementById("freetogame_profile_urlUpdate");
 
 //listening buttons
 randomButton.addEventListener("click", handleRandomButtonClick);
@@ -44,11 +42,11 @@ function handleRandomButtonClick() {
   fetch(`${API_URL}/games/all`)
     .then((response) => response.json())
     .then((data) => {
-      // console.log(data);
+     
       //gernerate a radnom index based on the length of the data array
       const randomIndex = Math.floor(Math.random() * data.length);
 
-      // console.log(randomIndex);
+      
       //get the random game object
       randomGame = data[randomIndex];
       console.log(randomGame);
@@ -69,6 +67,7 @@ function handleRandomButtonClick() {
     });
 }
 
+//function for the add button 
 function handleAddButtonClick(event) {
   event.preventDefault();
   console.log(event.target);
